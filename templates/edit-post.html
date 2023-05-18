@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit {{ post.title }}{% endblock %}
+
+{% block content %}
+<h1>Edit Post</h1>
+<form>
+    <label>Title</label>
+    <input name="title">
+    <br>
+    <label>Post Content</label>
+    <textarea name="content"> {{ post.content }}</textarea>
+    <br>
+
+    {% for tag in tags %}
+    <input type="checkbox" value="{{tag.id}}" name="tags">
+    <label>{{tag.name}}</label>
+    {% endfor %}
+
+    <button formmethod="GET" formaction="/users/{{ post.user_id }}">Cancel</button>
+    <button type="submit" formmethod="POST" formaction="/posts/{{ post.id}}/edit">Edit</button>
+</form>
+{% endblock %}
